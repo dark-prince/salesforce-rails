@@ -11,7 +11,7 @@ require 'rails'
 
           def copy_javascripts
             template 'javascripts/jquery-fullcalendar.js', File.join('public/javascripts', 'jquery-fullcalendar.js')
-            template 'javascripts/jquery-qtip.min.js', File.join('public/javascripts', 'jquery-qtip.js')
+            template 'javascripts/jquery-qtip.js', File.join('public/javascripts', 'jquery-qtip.js')
           end
 
           def copy_stylesheets
