@@ -68,9 +68,7 @@ module Salesforce
 
             def client
               unless @client
-                config_path = File.join(::Rails.root, 'config', 'salesforce.yml')
-                config = YAML.load(ERB.new(File.read(config_path)).result)
-                #config = YAML.load_file(File.join(::Rails.root, 'config', 'salesforce.yml'))
+                config = YAML.load_file(File.join(::Rails.root, 'config', 'salesforce.yml'))
                 config = config.has_key?(::Rails.env) ? config[::Rails.env] : config
                 username = config["username"]
                 password = config["password"]
@@ -84,7 +82,7 @@ module Salesforce
             private :new
           end
 
-          load_data
+          #load_data
         end
       end
     end
