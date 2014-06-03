@@ -1,0 +1,42 @@
+body {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 14px;
+    font-family: "Lucida Grande",bHelvetica,bArial,bVerdana,bsans-serif;
+}
+
+#calendar {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.hoverOuter {
+    width: 350px;
+    font-size: 91%;
+}
+
+.sub-section {
+    margin:0 10px;
+}
+
+td.labelCol {
+    width: 30%;
+    padding: 5px 10px 5px 2px;
+    text-align: right;
+    border-bottom: 1px solid #E3DEB8;
+}
+
+td.dataCol {
+    width: 70%;
+    padding: 5px 2px 5px 10px;
+    text-align: left;
+    border-bottom: 1px solid #E3DEB8;
+}
+
+td.last {
+    border-bottom: none;
+}
+
+.fc-event-time{
+    display : none;
+}
