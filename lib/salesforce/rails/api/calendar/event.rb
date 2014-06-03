@@ -64,14 +64,13 @@ module Salesforce
 
             def load_data
               client
-
-              client.materialize('Event')
-              client.materialize('User')
             end
 
             def client
               unless @client
-                config = YAML.load_file(File.join(::Rails.root, 'config', 'salesforce.yml'))
+                config_path = File.join(::Rails.root, 'config', 'salesforce.yml')
+                config = YAML.load(ERB.new(File.read(config_path)).result)
+                #config = YAML.load_file(File.join(::Rails.root, 'config', 'salesforce.yml'))
                 config = config.has_key?(::Rails.env) ? config[::Rails.env] : config
                 username = config["username"]
                 password = config["password"]
