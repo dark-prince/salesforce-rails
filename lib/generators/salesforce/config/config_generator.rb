@@ -9,7 +9,8 @@ module Salesforce
 
       def generate_config_file
         say_status('generating', 'salesforce.yml', :green)
-        copy_file 'salesforce.yml', 'config/salesforce.yml'
+        template 'salesforce.yml', File.join('config', 'salesforce.yml')
+        #copy_file 'salesforce.yml', 'config/salesforce.yml'
       end
     end
   end
