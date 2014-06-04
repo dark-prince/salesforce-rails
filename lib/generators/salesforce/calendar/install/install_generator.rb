@@ -70,12 +70,12 @@ else
           end
 
           def setup_routes
-            route "get 'calendar', :to => 'salesforce#calendar', :as => :salesforce_calendar"
-            route "get 'calendar/json-data', :to => 'salesforce#calendar_json_data', :as => :salesforce_calendar_json_data"
+            #route "get 'calendar', :to => 'salesforce#calendar', :as => :salesforce_calendar"
+            #route "get 'calendar/json-data', :to => 'salesforce#calendar_json_data', :as => :salesforce_calendar_json_data"
           end
 
           def copy_files
-            template 'salesforce_controller.rb.erb', File.join('app/controllers', 'salesforce_controller.rb')
+            #template 'salesforce_controller.rb.erb', File.join('app/controllers', 'salesforce_controller.rb')
             FileUtils.mkdir_p(File.join('app/views', 'salesforce'))
             template 'calendar.html.erb', File.join('app/views', 'salesforce/calendar.html.erb')
           end

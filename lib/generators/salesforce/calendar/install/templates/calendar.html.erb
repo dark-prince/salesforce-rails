@@ -1,54 +1,56 @@
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#calendar').fullCalendar({
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,basicWeek,basicDay'
-      },
-      editable: false,
-      ignoreTimezone: false,
-      events: {
-        url: '/calendar/json-data',
-        type: 'GET',
-        cache: true
-      },
-      eventRender: function(event, element){
-        if(event.allDay){
-          $(element).find('.fc-event-title').html('<span style="font-size:0.75em;">'+event.title+'</span><br/>'+event.subject);
-        }
-        else {
-          $(element).find('.fc-event-title').html('<span style="font-size:0.75em;">'+$.fullCalendar.formatDate(event.start, 'HH:mm')+' - '+$.fullCalendar.formatDate(event.end, 'HH:mm')+'</span><br/>'+event.subject);
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#calendar').fullCalendar({
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,basicWeek,basicDay'
+        },
+        editable: false,
+        ignoreTimezone: false,
+        events: {
+          url: '/calendar/json-data',
+          type: 'GET',
+          cache: true
+        },
+        eventRender: function(event, element){
+          if(event.allDay){
+            $(element).find('.fc-event-title').html('<span style="font-size:0.75em;">'+event.title+'</span><br/>'+event.subject);
+          }
+          else {
+            $(element).find('.fc-event-title').html('<span style="font-size:0.75em;">'+$.fullCalendar.formatDate(event.start, 'HH:mm')+' - '+$.fullCalendar.formatDate(event.end, 'HH:mm')+'</span><br/>'+event.subject);
             
-        }
+          }
           
 
-        $(element).qtip({
-          content: '<div class="hoverOuter"><div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="pbTitle"><h2 class="mainTitle">Event Detail</h2></td><td></td></tr></tbody></table></div><div class="sub-section"><table cellspacing="0" cellpadding="0" border="0" style="width:100%;"><tbody><tr><td class="labelCol">Assigned To</td><td class="dataCol">'+event.assign_to+'</td></tr><tr><td class="labelCol">Subject</td><td class="dataCol">'+event.subject+'</td></tr><tr><td class="labelCol">Start</td><td class="dataCol">'+$.fullCalendar.formatDate(new Date(event.start_date), (event.allDay ? "dd/MM/yyyy" : "dd/MM/yyyy HH:mm"))+'</td></tr><tr><td class="labelCol">End</td><td class="dataCol">'+$.fullCalendar.formatDate(new Date(event.end_date), (event.allDay ? "dd/MM/yyyy" : "dd/MM/yyyy HH:mm"))+'</td></tr><tr><td class="labelCol last">Description</td><td class="dataCol last">'+event.description+'</td></tr></tbody></table></div></div>',
-          position: {
-            corner: {
-              target: 'topMiddle',
-              tooltip: 'bottomLeft'
-            }
-          },
-          style: {
-            width: 350,
-            padding: 5,
-            background: '#FFFFFF',
-            color: 'black',
-            textAlign: 'center',
-            border: {
-              width: 1,
-              radius: 5,
-              color: '#DDDDDD'
+          $(element).qtip({
+            content: '<div class="hoverOuter"><div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="pbTitle"><h2 class="mainTitle">Event Detail</h2></td><td></td></tr></tbody></table></div><div class="sub-section"><table cellspacing="0" cellpadding="0" border="0" style="width:100%;"><tbody><tr><td class="labelCol">Assigned To</td><td class="dataCol">'+event.assign_to+'</td></tr><tr><td class="labelCol">Subject</td><td class="dataCol">'+event.subject+'</td></tr><tr><td class="labelCol">Start</td><td class="dataCol">'+$.fullCalendar.formatDate(new Date(event.start_date), (event.allDay ? "dd/MM/yyyy" : "dd/MM/yyyy HH:mm"))+'</td></tr><tr><td class="labelCol">End</td><td class="dataCol">'+$.fullCalendar.formatDate(new Date(event.end_date), (event.allDay ? "dd/MM/yyyy" : "dd/MM/yyyy HH:mm"))+'</td></tr><tr><td class="labelCol last">Description</td><td class="dataCol last">'+event.description+'</td></tr></tbody></table></div></div>',
+            position: {
+              corner: {
+                target: 'topMiddle',
+                tooltip: 'bottomLeft'
+              }
             },
-            tip: 'bottomLeft',
-            name: 'light' // Inherit the rest of the attributes from the preset dark style
-          }
-        });
-      }
+            style: {
+              width: 350,
+              padding: 5,
+              background: '#FFFFFF',
+              color: 'black',
+              textAlign: 'center',
+              border: {
+                width: 1,
+                radius: 5,
+                color: '#DDDDDD'
+              },
+              tip: 'bottomLeft',
+              name: 'light' // Inherit the rest of the attributes from the preset dark style
+            }
+          });
+        }
+      });
     });
-  });
-</script>
+  </script>
+<% end %>
 
 <div id="calendar"></div>
