@@ -54,7 +54,7 @@ else
           def append_asset_pipeline!
             application_css = 'app/assets/stylesheets/application.css'
             if File.file?(application_css)
-              insert_into_file application_css, "*= require salesforce-calendar\n", :before => "*= require_self"
+              insert_into_file application_css, "*= require salesforce-calendar\n", :before => " *= require_self"
             end
 
             application_js = 'app/assets/javascripts/application.js'

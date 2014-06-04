@@ -1,2 +1,2 @@
-//= require salesforce/fullcalendar
+//= require salesforce/fullcalendar.min
 //= require salesforce/qtip
