@@ -39,17 +39,12 @@ else
           def append_asset_pipeline!
             application_css = 'app/assets/stylesheets/application.css'
             if File.file?(application_css)
-              insert_into_file application_css, %q{*= require salesforce/fullcalendar
- *= require salesforce/fullcalendar.print
- *= require salesforce/calendar
-              }, :before => "*= require_self"
+              insert_into_file application_css, %q{*= require salesforce/fullcalendar\n *= require salesforce/fullcalendar.print\n *= require salesforce/calendar\n}, :before => "*= require_self\n"
             end
 
             application_js = 'app/assets/javascripts/application.js'
             if File.file?(application_js)
-              insert_into_file application_js, %q{//= require salesforce/fullcalendar
-//= require salesforce/qtip
-              }, :before => "//= require_tree ."
+              insert_into_file application_js, %q{//= require salesforce/fullcalendar\n //= require salesforce/qtip\n}, :before => "//= require_tree .\n"
             end
           end
 
