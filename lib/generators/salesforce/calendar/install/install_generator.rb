@@ -77,7 +77,8 @@ else
           def copy_files
             #template 'salesforce_controller.rb.erb', File.join('app/controllers', 'salesforce_controller.rb')
             FileUtils.mkdir_p(File.join('app/views', 'salesforce'))
-            template 'calendar.html.erb', File.join('app/views', 'salesforce/calendar.html.erb')
+            copy_file 'calendar.html.erb', File.join('app/views', 'salesforce/calendar.html.erb')
+            #template 'calendar.html.erb', File.join('app/views', 'salesforce/calendar.html.erb')
           end
         end
       end
