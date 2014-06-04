@@ -40,20 +40,27 @@ else
             application_css = 'app/assets/stylesheets/application.css'
             if File.file?(application_css)
               insert_into_file application_css, %q{*= require salesforce/fullcalendar
-*= require salesforce/fullcalendar.print
-*= require salesforce/calendar#}, :before => "*= require_self"
+ *= require salesforce/fullcalendar.print
+ *= require salesforce/calendar
+              }, :before => "*= require_self"
             end
 
             application_js = 'app/assets/javascripts/application.js'
             if File.file?(application_js)
               insert_into_file application_js, %q{//= require salesforce/fullcalendar
-//= require salesforce/qtip}, :before => "//= require_tree ."
+//= require salesforce/qtip
+              }, :before => "//= require_tree ."
             end
           end
 
           def setup_routes
-            route "get 'calendar', :to => 'salesforce#calendar', :as => :salesforce_calendar"
-            route "get 'calendar/json-data', :to => 'salesforce#calendar_json_data', :as => :salesforce_calendar_json_data"
+            #route "get 'calendar', :to => 'salesforce#calendar', :as => :salesforce_calendar"
+            #route "get 'calendar/json-data', :to => 'salesforce#calendar_json_data', :as => :salesforce_calendar_json_data"
+          end
+
+          def copy_files
+            #template 'salesforce_controller.rb.erb', File.join('app/controllers', 'salesforce_controller.rb')
+            #template 'calendar.html.erb', File.join('app/views', 'salesforce/calendar.html.erb')
           end
         end
       end
