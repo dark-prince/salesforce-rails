@@ -1,3 +1,7 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "salesforce/fullcalendar.print", :media => "print" %>
+<% end %>
+
 <% content_for :javascripts do %>
   <script type="text/javascript">
     $(document).ready(function() {
