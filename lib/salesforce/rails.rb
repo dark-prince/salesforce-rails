@@ -1,5 +1,6 @@
 require 'yaml' unless defined?(YAML)
 require 'databasedotcom'
+require 'rails'
 require 'salesforce/rails/engine' if ::Rails.version >= '3.1'
 require 'salesforce/rails/version'
 

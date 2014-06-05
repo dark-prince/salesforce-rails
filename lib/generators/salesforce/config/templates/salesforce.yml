@@ -1,22 +1,22 @@
 development:
   host: test.salesforce.com
-  client_secret: put-your-client-secret-here
-  client_id: put-your-client-id-here
-  username: put-your-username-here
-  password: put-your-password-here
+  client_secret: <your_salesforce_client_secret>
+  client_id: <your_salesforce_client_id>
+  username: <your_salesforce_username>
+  password: <your_salesforce_password>
   debugging: true
 
 test:
   host: test.salesforce.com
-  client_secret: put-your-client-secret-here
-  client_id: put-your-client-id-here
-  username: put-your-username-here
-  password: put-your-password-here
+  client_secret: <your_salesforce_client_secret>
+  client_id: <your_salesforce_client_id>
+  username: <your_salesforce_username>
+  password: <your_salesforce_password>
   debugging: true
 
 production:
-  host: put-your-host
-  client_secret: put-your-client-secret-here
-  client_id: put-your-client-id-here
-  username: put-your-username-here
-  password: put-your-password-here
+  host: login.salesforce.com
+  client_secret: <your_salesforce_client_secret>
+  client_id: <your_salesforce_client_id>
+  username: <your_salesforce_username>
+  password: <your_salesforce_password>

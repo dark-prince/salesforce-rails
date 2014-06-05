@@ -1,5 +1,3 @@
-require 'rails'
-
 module Salesforce
   module Generators
     class ConfigGenerator < ::Rails::Generators::Base

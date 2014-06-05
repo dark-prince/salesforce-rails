@@ -1,5 +1,3 @@
-require 'rails'
-
 # Supply generator for Rails 3.0.x or if asset pipeline is not enabled
 if ::Rails.version < "3.1" || !::Rails.application.config.assets.enabled
   module Salesforce
