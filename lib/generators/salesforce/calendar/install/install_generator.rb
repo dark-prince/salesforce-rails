@@ -10,8 +10,9 @@ if ::Rails.version < "3.1" || !::Rails.application.config.assets.enabled
           source_root File.expand_path('../../../../../../vendor/assets', __FILE__)
         
           def copy_javascripts
-            template 'javascripts/salesforce/fullcalendar.js', File.join('public/javascripts', 'salesforce/fullcalendar.js')
-            template 'javascripts/salesforce/qtip.js', File.join('public/javascripts', 'salesforce/qtip.js')
+            template 'javascripts/salesforce/fullcalendar.min.js', File.join('public/javascripts', 'salesforce/fullcalendar.min.js')
+            template 'javascripts/salesforce/jquery.browser.min.js', File.join('public/javascripts', 'salesforce/jquery.browser.min.js')
+            template 'javascripts/salesforce/qtip.min.js', File.join('public/javascripts', 'salesforce/qtip.min.js')
           end
 
           def copy_stylesheets
@@ -55,6 +56,8 @@ else
             # Remove old requires (if any) that included salesforce-calendar directly:
             gsub_file("app/assets/stylesheets/application.css", %r|\s*\*=\s*salesforce-calendar\s*\n|, "")
             gsub_file("app/assets/javascripts/application.js", %r|\s*\//=\s*salesforce-calendar\s*\n|, "")
+            gsub_file("app/assets/javascripts/application.js", %r|\s*\//=\s*jquery.browser.min\s*\n|, "")
+            gsub_file("app/assets/javascripts/application.js", %r|\s*\//=\s*jquery.browser\s*\n|, "")
           end
 
           def append_asset_pipeline!
@@ -65,7 +68,7 @@ else
 
             application_js = 'app/assets/javascripts/application.js'
             if File.file?(application_js)
-              insert_into_file application_js, "//= require salesforce-calendar\n", :before => "//= require_tree ."
+              insert_into_file application_js, "//= require salesforce-calendar\n", :after => "//= require jquery_ujs\n"
             end
           end
 
