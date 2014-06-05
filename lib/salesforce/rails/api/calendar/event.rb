@@ -17,21 +17,21 @@ module Salesforce
             def query(where_expr)
               client.query("SELECT Id, Subject, IsAllDayEvent, StartDateTime, EndDateTime, Description, Owner.Name, ShowAs FROM Event WHERE #{where_expr}")
             end
-          end
 
-          private
+            private
 
-          def client
-            unless @client
-              config = YAML.load_file(File.join(::Rails.root, 'config', 'salesforce.yml'))
-              config = config.has_key?(::Rails.env) ? config[::Rails.env] : config
-              username = config["username"]
-              password = config["password"]
-              @client = Databasedotcom::Client.new(config)
-              @client.authenticate(:username => username, :password => password)
+            def client
+              unless @client
+                config = YAML.load_file(File.join(::Rails.root, 'config', 'salesforce.yml'))
+                config = config.has_key?(::Rails.env) ? config[::Rails.env] : config
+                username = config["username"]
+                password = config["password"]
+                @client = Databasedotcom::Client.new(config)
+                @client.authenticate(:username => username, :password => password)
+              end
+
+              @client
             end
-
-            @client
           end
         end
       end
