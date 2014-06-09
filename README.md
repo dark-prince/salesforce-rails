@@ -1,24 +1,41 @@
 # Salesforce::Rails
 
-TODO: Write a gem description
-
-## Installation
-
-Add this line to your application's Gemfile:
+salesforce_rails is a gem to access salesforce calender in rails application much more easier. If you use bundler, simply list it in your Gemfile, like so:
 
     gem 'salesforce-rails'
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
     $ gem install salesforce-rails
 
 ## Usage
+### Configuration
 
-TODO: Write usage instructions here
+    $ rails g salesforce:config
+
+```yaml
+# salesforce.yml
+#
+---
+development:
+  client_secret: foo
+  client_id: bar
+```
+
+### Calendar installation
+
+    $ rails g salesforce:calendar:install
+
+Then run rails server
+
+    $ rails s
+
+And open browser and type http://localhost:3000/calendar
+
 
 ## Contributing
 
