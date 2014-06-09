@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Salesforce::Rails::API::CalendarEvent do
+RSpec.describe Salesforce::Rails::API::CalendarEvent do
   class TestClass < Salesforce::Rails::API::CalendarEvent
   end
 
@@ -16,15 +16,15 @@ describe Salesforce::Rails::API::CalendarEvent do
 
   context ".all" do
     it "returns all records of events as instances" do
-      @client.should_receive(:query).with("SELECT Id, Subject, IsAllDayEvent, StartDateTime, EndDateTime, Description, Owner.Name, ShowAs FROM Event").and_return("foo")
-      TestClass.all.should == "foo"
+      expect(@client).to receive(:query).with("SELECT Id, Subject, IsAllDayEvent, StartDateTime, EndDateTime, Description, Owner.Name, ShowAs FROM Event").and_return("foo")
+      expect(TestClass.all).to eq("foo")
     end
   end
 
   context ".query" do
     it "constructs and submits a SOQL query" do
-      @client.should_receive(:query).with("SELECT Id, Subject, IsAllDayEvent, StartDateTime, EndDateTime, Description, Owner.Name, ShowAs FROM Event WHERE Subject = 'foo'").and_return("bar")
-      TestClass.query("Subject = 'foo'").should == "bar"
+      expect(@client).to receive(:query).with("SELECT Id, Subject, IsAllDayEvent, StartDateTime, EndDateTime, Description, Owner.Name, ShowAs FROM Event WHERE Subject = 'foo'").and_return("bar")
+      expect(TestClass.query("Subject = 'foo'")).to eq("bar")
     end
   end
 end
