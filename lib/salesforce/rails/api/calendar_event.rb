@@ -1,8 +1,7 @@
 module Salesforce
   module Rails
     module API
-      module Calendar
-        class Event
+      class CalendarEvent
           include Salesforce::Rails::API::Client
           
           class << self
@@ -19,9 +18,7 @@ module Salesforce
             def query(where_expr)
               client.query("SELECT Id, Subject, IsAllDayEvent, StartDateTime, EndDateTime, Description, Owner.Name, ShowAs FROM Event WHERE #{where_expr}")
             end
-            
           end
-        end
       end
     end
   end

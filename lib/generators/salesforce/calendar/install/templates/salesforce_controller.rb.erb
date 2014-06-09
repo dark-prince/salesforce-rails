@@ -1,7 +1,7 @@
 class SalesforceController < ::ApplicationController
 
   def calendar_json_data
-    events = Salesforce::Rails::API::Calendar::Event.query("StartDateTime >= #{Time.at(params[:start].to_i).strftime("%Y-%m-%dT%H:%M:%SZ")} and StartDateTime <= #{Time.at(params[:end].to_i).strftime("%Y-%m-%dT%H:%M:%SZ")}")
+    events = Salesforce::Rails::API::CalendarEvent.query("StartDateTime >= #{Time.at(params[:start].to_i).strftime("%Y-%m-%dT%H:%M:%SZ")} and StartDateTime <= #{Time.at(params[:end].to_i).strftime("%Y-%m-%dT%H:%M:%SZ")}")
 
     respond_to do |format|
       format.json { render json: events ? events.map { |e| { :id => e.Id, :title => (e.IsAllDayEvent ? "All Day Event" : e.Subject), :allDay => e.IsAllDayEvent, :start => e.StartDateTime, :end => e.EndDateTime, :start_date => e.StartDateTime, :end_date => e.EndDateTime, :color => (e.ShowAs == "Busy" ? "#6777cc" : "#b64b32"), :backgroundColor => (e.ShowAs == "Busy" ? "#6777cc" : "#b64b32"), :subject => e.Subject, :assign_to => e.Owner.Name, :description => e.Description, :show_as => e.ShowAs } } : nil }

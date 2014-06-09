@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Salesforce::Rails::API::Calendar::Event do
-  class TestClass < Salesforce::Rails::API::Calendar::Event
+describe Salesforce::Rails::API::CalendarEvent do
+  class TestClass < Salesforce::Rails::API::CalendarEvent
   end
 
   before do
