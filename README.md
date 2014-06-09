@@ -1,5 +1,7 @@
 # Salesforce::Rails
 
+[![Gem Version](https://badge.fury.io/rb/salesforce-rails.svg)](http://badge.fury.io/rb/salesforce-rails) [![Build Status](https://travis-ci.org/dark-prince/salesforce-rails.svg)](https://travis-ci.org/dark-prince/salesforce-rails) [![Code Climate](https://codeclimate.com/github/dark-prince/salesforce-rails.png)](https://codeclimate.com/github/dark-prince/salesforce-rails) [![Dependency Status](https://gemnasium.com/dark-prince/salesforce-rails.svg)](https://gemnasium.com/dark-prince/salesforce-rails) [![License](http://img.shields.io/license/MIT.png?color=green)](http://opensource.org/licenses/MIT)
+
 salesforce_rails is a gem to access salesforce calender in rails application much more easier. If you use bundler, simply list it in your Gemfile, like so:
 
     gem 'salesforce-rails'
