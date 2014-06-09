@@ -45,7 +45,7 @@ And open browser and type [http://localhost:3000/calendar](http://localhost:3000
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
-5. Make sure there are tests! I will not accept any patch that is not tested. It's a rare time when explicit tests are not needed. If you have questions about writing tests for paperclip, please open a [GitHub issue](https://github.com/thoughtbot/paperclip/issues/new).
+5. Make sure there are tests! I will not accept any patch that is not tested. It's a rare time when explicit tests are not needed. If you have questions about writing tests for salesforce_rails, please open a [GitHub issue](https://github.com/dark-prince/salesforce-rails/issues/new).
 6. Create a new Pull Request
 
 ## License
