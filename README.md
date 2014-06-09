@@ -30,11 +30,11 @@ development:
 
     $ rails g salesforce:calendar:install
 
-Then run rails server
+After then restart server
 
     $ rails s
 
-And open browser and type http://localhost:3000/calendar
+And open browser and type [http://localhost:3000/calendar](http://localhost:3000/calendar)
 
 
 ## Contributing
