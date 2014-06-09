@@ -30,7 +30,7 @@ development:
 
     $ rails g salesforce:calendar:install
 
-After then restart server
+Then
 
     $ rails s
 
