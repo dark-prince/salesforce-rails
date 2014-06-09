@@ -6,7 +6,7 @@ describe Salesforce::Rails::API::Client do
   end
 
   context ".client" do
-    after(:each) do
+    before(:each) do
       TestClass.client = nil
     end
 
