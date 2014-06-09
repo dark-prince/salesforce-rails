@@ -1,85 +1,48 @@
-# Supply generator for Rails 3.0.x or if asset pipeline is not enabled
-if ::Rails.version < "3.1" || !::Rails.application.config.assets.enabled
-  module Salesforce
-    module Calendar
-      module Generators
-        class InstallGenerator < ::Rails::Generators::Base
-          desc "This generator installs jQuery Fullcalendar"
-          source_root File.expand_path('../../../../../../vendor/assets', __FILE__)
+module Salesforce
+  module Calendar
+    module Generators
+      class InstallGenerator < ::Rails::Generators::Base
+        desc "This generator installs jQuery Fullcalendar"
+        source_root File.expand_path('../templates', __FILE__)
 
-          def copy_javascripts
-            template 'javascripts/salesforce/fullcalendar.min.js', File.join('public/javascripts', 'salesforce/fullcalendar.min.js')
-            template 'javascripts/salesforce/jquery.browser.min.js', File.join('public/javascripts', 'salesforce/jquery.browser.min.js')
-            template 'javascripts/salesforce/qtip.min.js', File.join('public/javascripts', 'salesforce/qtip.min.js')
+        def install
+          cleanup!
+          append_asset_pipeline!
+          setup_routes
+          copy_files
+        end
+
+        protected
+
+        def cleanup!
+          # Remove old requires (if any) that included salesforce-calendar directly:
+          gsub_file("app/assets/stylesheets/application.css", %r|\s*\*=\s*salesforce-calendar\s*\n|, "")
+          gsub_file("app/assets/javascripts/application.js", %r|\s*\//=\s*salesforce-calendar\s*\n|, "")
+          gsub_file("app/assets/javascripts/application.js", %r|\s*\//=\s*jquery.browser.min\s*\n|, "")
+          gsub_file("app/assets/javascripts/application.js", %r|\s*\//=\s*jquery.browser\s*\n|, "")
+        end
+
+        def append_asset_pipeline!
+          application_css = 'app/assets/stylesheets/application.css'
+          if File.file?(application_css)
+            insert_into_file application_css, "*= require salesforce-calendar\n", :before => " *= require_self"
           end
 
-          def copy_stylesheets
-            template 'stylesheets/salesforce/fullcalendar.css', File.join('public/stylesheets', 'salesforce/fullcalendar.css')
-            template 'stylesheets/salesforce/fullcalendar.print.css', File.join('public/stylesheets', 'salesforce/fullcalendar.print.css')
-            template 'stylesheets/salesforce/calendar.css', File.join('public/stylesheets', 'salesforce/calendar.css')
-          end
-
-          def setup_routes
-            route "get 'calendar', :to => 'salesforce#calendar', :as => :salesforce_calendar"
-            route "get 'calendar/json-data', :to => 'salesforce#calendar_json_data', :as => :salesforce_calendar_json_data"
-          end
-
-          def copy_files
-            copy_file 'salesforce_controller.rb.erb', File.join('app/controllers', 'salesforce_controller.rb')
-            FileUtils.mkdir_p(File.join('app/views', 'salesforce'))
-            copy_file 'calendar.html.erb', File.join('app/views', 'salesforce/calendar.html.erb')
+          application_js = 'app/assets/javascripts/application.js'
+          if File.file?(application_js)
+            insert_into_file application_js, "//= require salesforce-calendar\n", :after => "//= require jquery_ujs\n"
           end
         end
-      end
-    end
-  end
-else
-  module Salesforce
-    module Calendar
-      module Generators
-        class InstallGenerator < ::Rails::Generators::Base
-          desc "This generator installs jQuery Fullcalendar"
-          source_root File.expand_path('../templates', __FILE__)
 
-          def install
-            cleanup!
-            append_asset_pipeline!
-            setup_routes
-            copy_files
-          end
+        def setup_routes
+          route "get 'calendar', :to => 'salesforce#calendar', :as => :salesforce_calendar"
+          route "get 'calendar/json-data', :to => 'salesforce#calendar_json_data', :as => :salesforce_calendar_json_data"
+        end
 
-          protected
-
-          def cleanup!
-            # Remove old requires (if any) that included salesforce-calendar directly:
-            gsub_file("app/assets/stylesheets/application.css", %r|\s*\*=\s*salesforce-calendar\s*\n|, "")
-            gsub_file("app/assets/javascripts/application.js", %r|\s*\//=\s*salesforce-calendar\s*\n|, "")
-            gsub_file("app/assets/javascripts/application.js", %r|\s*\//=\s*jquery.browser.min\s*\n|, "")
-            gsub_file("app/assets/javascripts/application.js", %r|\s*\//=\s*jquery.browser\s*\n|, "")
-          end
-
-          def append_asset_pipeline!
-            application_css = 'app/assets/stylesheets/application.css'
-            if File.file?(application_css)
-              insert_into_file application_css, "*= require salesforce-calendar\n", :before => " *= require_self"
-            end
-
-            application_js = 'app/assets/javascripts/application.js'
-            if File.file?(application_js)
-              insert_into_file application_js, "//= require salesforce-calendar\n", :after => "//= require jquery_ujs\n"
-            end
-          end
-
-          def setup_routes
-            route "get 'calendar', :to => 'salesforce#calendar', :as => :salesforce_calendar"
-            route "get 'calendar/json-data', :to => 'salesforce#calendar_json_data', :as => :salesforce_calendar_json_data"
-          end
-
-          def copy_files
-            copy_file 'salesforce_controller.rb.erb', File.join('app/controllers', 'salesforce_controller.rb')
-            FileUtils.mkdir_p(File.join('app/views', 'salesforce'))
-            copy_file 'calendar.html.erb', File.join('app/views', 'salesforce/calendar.html.erb')
-          end
+        def copy_files
+          copy_file 'salesforce_controller.rb.erb', File.join('app/controllers', 'salesforce_controller.rb')
+          FileUtils.mkdir_p(File.join('app/views', 'salesforce'))
+          copy_file 'calendar.html.erb', File.join('app/views', 'salesforce/calendar.html.erb')
         end
       end
     end
