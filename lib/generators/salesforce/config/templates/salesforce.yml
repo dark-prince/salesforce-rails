@@ -1,22 +1,32 @@
+#
+# For authentication purpose needed either :username and :password
+# OR :token and :instance_url pair
+#
 development:
-  host: test.salesforce.com
+  host: <your_salesforce_host>
   client_secret: <your_salesforce_client_secret>
   client_id: <your_salesforce_client_id>
   username: <your_salesforce_username>
   password: <your_salesforce_password>
+  token:  <your_salesforce_token>
+  instance_url:  <your_salesforce_instance_url>
   debugging: true
 
 test:
-  host: test.salesforce.com
+  host: <your_salesforce_host>
   client_secret: <your_salesforce_client_secret>
   client_id: <your_salesforce_client_id>
   username: <your_salesforce_username>
   password: <your_salesforce_password>
+  token:  <your_salesforce_token>
+  instance_url:  <your_salesforce_instance_url>
   debugging: true
 
 production:
-  host: login.salesforce.com
+  host: <your_salesforce_host>
   client_secret: <your_salesforce_client_secret>
   client_id: <your_salesforce_client_id>
   username: <your_salesforce_username>
   password: <your_salesforce_password>
+  token:  <your_salesforce_token>
+  instance_url:  <your_salesforce_instance_url>

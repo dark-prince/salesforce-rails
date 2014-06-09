@@ -6,7 +6,7 @@ if ::Rails.version < "3.1" || !::Rails.application.config.assets.enabled
         class InstallGenerator < ::Rails::Generators::Base
           desc "This generator installs jQuery Fullcalendar"
           source_root File.expand_path('../../../../../../vendor/assets', __FILE__)
-        
+
           def copy_javascripts
             template 'javascripts/salesforce/fullcalendar.min.js', File.join('public/javascripts', 'salesforce/fullcalendar.min.js')
             template 'javascripts/salesforce/jquery.browser.min.js', File.join('public/javascripts', 'salesforce/jquery.browser.min.js')

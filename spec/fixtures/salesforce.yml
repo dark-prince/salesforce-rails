@@ -1,0 +1,20 @@
+development:
+  client_secret: client_secret
+  client_id: client_id
+  token: foo
+  instance_url: https://na9.salesforce.com
+  debugging: true
+
+test:
+  client_secret: test_client_secret
+  client_id: test_client_secret
+  username:  test_user
+  password:  test_password
+  debugging: true
+
+production:
+  client_secret: production_client_secret
+  client_id: production_client_secret
+  username:  production_user
+  password:  production_password
+  debugging: true
