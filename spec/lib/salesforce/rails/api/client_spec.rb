@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Salesforce::Rails::API::Client do
+RSpec.describe Salesforce::Rails::API::Client do
   class TestClass
     include Salesforce::Rails::API::Client
   end
