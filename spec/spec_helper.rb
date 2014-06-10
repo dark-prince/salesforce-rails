@@ -1,6 +1,9 @@
 require 'bundler/setup'
 require 'salesforce-rails'
 require 'rails_mocks'
+require 'coveralls'
+
+Coveralls.wear!
 
 RSpec.configure do |config|
   config.color = true
