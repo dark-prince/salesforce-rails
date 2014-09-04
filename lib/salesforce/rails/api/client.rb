@@ -5,7 +5,7 @@ module Salesforce
         module ClassMethods
           def client
             unless @client
-              config = YAML.load_file(File.join(::Rails.root, 'config', 'salesforce.yml'))
+              config = YAML.load(ERB.new(File.new(File.join(::Rails.root, 'config', 'salesforce.yml')).read).result)
               config = config.has_key?(::Rails.env) ? config[::Rails.env] : config
               username = config["username"]
               password = config["password"]

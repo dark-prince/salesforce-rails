@@ -5,7 +5,7 @@ RSpec.describe Salesforce::Rails::API::CalendarEvent do
   end
 
   before do
-    config = YAML.load_file(File.join(::Rails.root, 'fixtures/salesforce.yml'))
+    config = YAML.load(ERB.new(File.new(File.join(::Rails.root, 'config', 'salesforce.yml')).read).result)
     config = config.has_key?(::Rails.env) ? config[::Rails.env] : config
     token = config["token"]
     instance_url = config["instance_url"]
